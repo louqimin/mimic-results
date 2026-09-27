@@ -8,6 +8,8 @@
 
 然后把整套流程搬到了智元 X2 上。X2 没有现成可用的动作数据，所以从人体动捕数据开始，自己做了一遍重定向。这一步踩的坑最多：两台机器人的关节名字一样，但零点和方向不一样，直接套用 G1 的数据姿态是错的。重定向配置里也有几处角度偏差，要一处一处找出来修掉。
 
+关节的力矩和速度上限照 X2 官方 URDF 填。电机的转子惯量（armature）官方没给，就按力矩档位借用了 G1 同档电机的值，PD 增益再按 BeyondMimic 的公式从它算出来。这是个近似，也是 X2 跟不上 G1 的候选原因之一。
+
 训好的 X2 策略又放到 MuJoCo 里做了 sim2sim，能稳定走完。换个错的输入它就会摔，说明这个检验是有效的。
 
 最后比了一下 X2 为什么跟得没有 G1 好。结论是大头出在机器人本身，重定向只占一小部分。关节速度上限也排除掉了，剩下的原因还在查。
@@ -57,9 +59,11 @@ MuJoCo 的视频之后再补。
   <img alt="五个策略的回合长度随训练的变化" src="media/train_light.png">
 </picture>
 
-## 用到的开源项目
+## 用到的项目和工具
 
 [BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking)、[GMR](https://github.com/YanjieZe/GMR)、[Isaac Lab](https://github.com/isaac-sim/IsaacLab)、[MuJoCo](https://github.com/google-deepmind/mujoco)
+
+训练记录和上面的曲线用的是 [Weights & Biases](https://wandb.ai)，参考动作也存在它的注册表里。
 
 ## 关于数据
 
