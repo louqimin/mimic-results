@@ -41,6 +41,22 @@ Isaac Lab 里的回放。
 
 MuJoCo 的视频之后再补。
 
+## 训练曲线
+
+两台机器人跟同一段搏击动作。X2 的误差一直比 G1 高，放开关节速度上限（虚线）以后几乎没变化。锚点误差开头很低，是因为那时机器人很快就摔了，还没来得及跑偏。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="media/gap_dark.png">
+  <img alt="G1 与 X2 在同一段搏击动作上的跟踪误差" src="media/gap_light.png">
+</picture>
+
+五个策略的训练过程。纵轴是机器人每回合能坚持多少步不摔。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="media/train_dark.png">
+  <img alt="五个策略的回合长度随训练的变化" src="media/train_light.png">
+</picture>
+
 ## 用到的开源项目
 
 [BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking)、[GMR](https://github.com/YanjieZe/GMR)、[Isaac Lab](https://github.com/isaac-sim/IsaacLab)、[MuJoCo](https://github.com/google-deepmind/mujoco)
